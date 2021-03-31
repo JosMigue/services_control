@@ -33,6 +33,17 @@ class User extends Authenticatable
         'remember_token',
         'two_factor_recovery_codes',
         'two_factor_secret',
+        'status',
+        'age',
+        'gender',
+        'role_id',
+        'email_verified_at',
+        'profile_photo_url',
+        'email',
+        'current_team_id',
+        'profile_photo_path',
+        'created_at',
+        'updated_at'
     ];
 
     protected $casts = [
