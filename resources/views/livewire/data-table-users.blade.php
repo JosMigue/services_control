@@ -35,9 +35,6 @@
           <table class="min-w-full leading-normal">
             <thead>
               <tr>
-                <th class="w-36 px-4 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                  {{__('Id')}}
-                </th>
                 <th class="px-4 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                   {{__('Name')}}
                 </th>
@@ -45,7 +42,16 @@
                   {{__('Status')}}
                 </th>
                 <th class="px-4 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                  {{__('Age')}}
+                </th>
+                <th class="px-4 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                  {{__('Gender')}}
+                </th>
+                <th class="px-4 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                   {{__('Created at')}}
+                </th>
+                <th class="px-4 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                  {{__('Services')}}
                 </th>
                 <th class=" w-36 px-4 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                   {{__('Action')}}
@@ -53,48 +59,60 @@
               </tr>
             </thead>
             <tbody>
-              @if ($services->count() > 0 )
-                @foreach ($services as $service)
+              @if ($users->count() > 0 )
+                @foreach ($users as $user)
                   <tr class="transition-all hover:bg-gray-100 hover:shadow-lg">
                     <td class="px-4 py-5 text-sm">
-                      <p class="text-gray-900 whitespace-no-wrap">{{$service->id}}</p>
-                    </td>
-                    <td class="px-4 py-5 text-sm w-36">
-                      <div class="overflow-x-auto flex">
-                        <p class="text-gray-900 whitespace-no-wrap">{{$service->name}}</p>
+                      <div class="flex items-center">
+                        <div class="flex-shrink-0 h-10 w-10">
+                          <img class="h-10 w-10 rounded-full" src="https://ui-avatars.com/api/?name={{$user->name}}" alt="{{$user->name}}">
+                        </div>
+                        <div class="ml-4">
+                          <div class="text-sm font-medium text-gray-900">
+                            {{$user->name}}
+                          </div>
+                          <div class="text-sm text-gray-500">
+                            {{$user->email}}
+                          </div>
+                        </div>
                       </div>
                     </td>
-                    <td class="px-4 py-5  text-sm w-36">
+                    <td class="px-4 py-5  text-sm w-34">
                       <div class="overflow-x-auto flex">
-                        @if ($service->status)
+                        @if ($user->status)
                           <span class="inline-block rounded-full text-white bg-green-500 px-2 py-1 text-xs font-bold mr-3">{{__('Enabled')}}</span> 
                         @else
                           <span class="inline-block rounded-full text-white bg-red-500 px-2 py-1 text-xs font-bold mr-3">{{__('Disabled')}}</span>
                         @endif
                       </div>
                     </td>
-                    <td class="px-4 py-5  text-sm w-36">
-                      <div class="overflow-x-auto flex w-36">
-                        <p class="text-gray-900 whitespace-no-wrap">{{$service->created_at->format('Y-m-d')}}</p>
+                    <td class="px-4 py-5 text-sm w-34">
+                      <div class="overflow-x-auto flex">
+                        <p class="text-gray-900 whitespace-no-wrap">{{$user->age}}</p>
+                      </div>
+                    </td>
+                    <td class="px-4 py-5  text-sm w-34">
+                      <div class="overflow-x-auto flex w-34">
+                        <p class="text-gray-900 whitespace-no-wrap">{{$user->gender}}</p>
+                      </div>
+                    </td>
+                    <td class="px-4 py-5  text-sm w-34">
+                      <div class="overflow-x-auto flex w-34">
+                        <p class="text-gray-900 whitespace-no-wrap">{{$user->created_at->format('Y-m-d')}}</p>
+                      </div>
+                    </td>
+                    <td class="px-4 py-5  text-sm w-34">
+                      <div class="overflow-x-auto flex w-34">
+                        <p class="text-gray-900 whitespace-no-wrap">{{$user->services()->count()}}</p>
                       </div>
                     </td>
                     <td class="px-5 py-5 text-sm flex align-center hidden md:hidden lg:block w-36">
-                      <x-service-dropdown service="{{$service->id}}" status="{{$service->status}}"></x-service-dropdown>
+                      <x-user-dropdown user="{{$user->id}}" status="{{$user->status}}"></x-user-dropdown>
                     </td>
                     <td class="px-5 py-5 text-sm flex align-center block md:block lg:hidden w-36">
                       <div class="overflow-x-auto flex">
                         <div class="p-2 w-36 ">
-                          <a href="{{route('services.edit', $service->id)}}" class="flex items-center p-4 bg-yellow-200 rounded-lg shadow-xs cursor-pointer hover:bg-yellow-500 hover:text-gray-100">
-                            <i class="fa fa-edit"></i>
-                            <div>
-                              <p class=" text-xs font-medium ml-2 ">
-                                {{__('Edit')}}
-                              </p>
-                            </div>
-                          </a>
-                        </div>
-                        <div class="p-2 w-36 ">
-                          <a href="{{route('services.show', $service->id)}}" class="flex items-center p-4 bg-blue-200 rounded-lg shadow-xs cursor-pointer hover:bg-blue-500 hover:text-gray-100">                            
+                          <a href="{{route('users.show', $user->id)}}" class="flex items-center p-4 bg-blue-200 rounded-lg shadow-xs cursor-pointer hover:bg-blue-500 hover:text-gray-100">                            
                             <i class="fa fa-eye"></i>
                             <div>
                               <p class=" text-xs font-medium ml-2 ">
@@ -104,7 +122,7 @@
                           </a>
                         </div>
                         <div class="p-2 w-36 ">
-                          <button onclick="deleteService({{$service->id}})" class="flex items-center p-4 bg-red-200 rounded-lg shadow-xs cursor-pointer hover:bg-red-500 hover:text-gray-100">
+                          <button onclick="deleteUser({{$user->id}})" class="flex items-center p-4 bg-red-200 rounded-lg shadow-xs cursor-pointer hover:bg-red-500 hover:text-gray-100">
                             <i class="fa fa-trash"></i>
                             <div>
                               <p class=" text-xs font-medium ml-2 ">
@@ -114,8 +132,8 @@
                           </button>
                         </div>
                         <div class="p-2 w-36 ">
-                          @if ($service->status)
-                            <button wire:click="changeStatusService({{$service->id}},0)" class="flex items-center p-4 bg-red-200 rounded-lg shadow-xs cursor-pointer hover:bg-red-500 hover:text-gray-100">
+                          @if ($user->status)
+                            <button wire:click="changeUserStatus({{$user->id}},0)" class="flex items-center p-4 bg-red-200 rounded-lg shadow-xs cursor-pointer hover:bg-red-500 hover:text-gray-100">
                               <i class="fas fa-exchange-alt"></i>
                               <div>
                                 <p class=" text-xs font-medium ml-2 ">
@@ -124,7 +142,7 @@
                               </div>
                             </button>
                           @else
-                            <button wire:click="changeStatusService({{$service->id}},1)" class="flex items-center p-4 bg-green-200 rounded-lg shadow-xs cursor-pointer hover:bg-green-500 hover:text-gray-100">
+                            <button wire:click="changeUserStatus({{$user->id}},1)" class="flex items-center p-4 bg-green-200 rounded-lg shadow-xs cursor-pointer hover:bg-green-500 hover:text-gray-100">
                               <i class="fas fa-exchange-alt"></i>
                               <div>
                                 <p class=" text-xs font-medium ml-2 ">
@@ -154,7 +172,7 @@
         </div>
       </div>
       <div class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between">
-        {{$services->links()}}
+        {{$users->links()}}
       </div>
     </div>
   </div>
