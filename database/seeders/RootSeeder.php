@@ -22,6 +22,7 @@ class RootSeeder extends Seeder
             'remember_token' => null,
             'created_at'=>'2021-03-29 12:00:00',
             'updated_at'=>'2021-03-29 12:00:00',
+            'status' => 1,
             'role_id' => 1,
             'age' => 18,
             'gender' => 'M'

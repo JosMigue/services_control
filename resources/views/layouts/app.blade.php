@@ -44,5 +44,6 @@
 
         @livewireScripts
         @yield('scripts')
+        <script src="{{asset('js/utils/closeAlert.js')}}"></script>
     </body>
 </html>

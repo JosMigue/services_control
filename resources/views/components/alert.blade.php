@@ -1,12 +1,14 @@
 @props(['icon', 'color'])
-<div class="transition duration-150 ease-in-out bg-{{$color}}-200 text-{{$color}}-500 lg:px-6 lg:py-3 py-3 px-4 border-2 border-{{$color}}-400 rounded relative mb-4">
-  <span class="text-md lg:text-xl inline-block lg:mr-5 align-middle">
-    <i class="{{$icon}}"></i>
-  </span>
-  <span class="inline-block align-middle lg:mr-8 text-md lg:text-lg">
-    <b class="capitalize">{{  $boldMessage }}</b> | {{  $message  }}
-  </span>
-  <button type="button" class="absolute bg-transparent text-md lg:text-2xl font-semibold leading-none right-0 top-0 lg:m-2 m-3 outline-none focus:outline-none" onclick="closeAlert(event)">
-    <span class="flex align-center">×</span>
-  </button>
+<div class="w-full text-white bg-{{$color}}-500">
+  <div class="container flex items-center justify-between px-6 py-4 mx-auto">
+      <div class="flex">
+        <i class="{{$icon}}"></i>
+        <p class="mx-3">{{$message}}</p>
+      </div>
+      <button class="p-1 transition-colors duration-200 transform rounded-md hover:bg-opacity-25 hover:bg-gray-600 focus:outline-none" onclick="closeAlert(event)">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 18L18 6M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+      </button>
+  </div>
 </div>

@@ -5,7 +5,13 @@
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
-
+        @if (session('loginMessage'))
+            <x-alert icon="fa fa-info" color="blue">
+            <x-slot name="message">
+                {{session('loginMessage')}}
+            </x-slot>
+            </x-alert>
+        @endif
         @if (session('status'))
             <div class="mb-4 font-medium text-sm text-green-600">
                 {{ session('status') }}
