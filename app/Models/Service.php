@@ -12,6 +12,14 @@ class Service extends Model
     protected $fillable = ['name', 'status', 'user_id'];
     protected $table = 'services';
 
+    protected $hidden = [
+        'status',
+        'user_id',
+        'created_at',
+        'updated_at'
+    ];
+
+
     public function user(){
         return $this->belongsTo(User::class);
     }
