@@ -21,7 +21,10 @@ class RootSeeder extends Seeder
             'password'=>'$2y$10$H8pgJ7HTjCLfv.68zRNpbeqLCUpDLUylfX0.zp01WwRGsxm/VDMSW', //secretpassword
             'remember_token' => null,
             'created_at'=>'2021-03-29 12:00:00',
-            'updated_at'=>'2021-03-29 12:00:00'
+            'updated_at'=>'2021-03-29 12:00:00',
+            'role_id' => 1,
+            'age' => 18,
+            'gender' => 'M'
         ];
 
         \DB::table('users')->insert($root);

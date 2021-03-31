@@ -42,4 +42,8 @@ class User extends Authenticatable
     public function services(){
         return $this->hasMany(Service::class);
     }
+
+    public function role(){
+        return $this->BelongsTo(Role::class);
+    }
 }
