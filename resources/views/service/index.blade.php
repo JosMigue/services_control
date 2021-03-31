@@ -12,7 +12,12 @@
       <div class="max-w-7xl mx-auto sm:px-6 ">
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-8 py-8">
           <x-session-messages></x-session-messages>
+          @livewire('data-table-services')
         </div>
       </div>
     </div>
+    @section('scripts')
+      <script src="{{asset('js/utils/sweetalert.js')}}" defer></script>
+      <script src="{{asset('js/service/delete.js')}}" defer></script>
+    @endsection
 </x-app-layout>
