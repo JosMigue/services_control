@@ -14,19 +14,34 @@
                 <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             </div>
 
+            
             <div class="mt-4">
                 <x-jet-label for="email" value="{{ __('Email') }}" />
                 <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             </div>
-
+            
             <div class="mt-4">
                 <x-jet-label for="password" value="{{ __('Password') }}" />
                 <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
             </div>
-
+            
             <div class="mt-4">
                 <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
                 <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
+            </div>
+            
+            <div class="mt-4">
+                <x-jet-label for="age" value="{{ __('Age') }}" />
+                <x-jet-input id="age" class="block mt-1 w-full" type="number" name="age" :value="old('age')" required />
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label for="gender" value="{{ __('Gender') }}" />
+                <select id="gender" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm block mt-1 w-full" name="gender" required >
+                    <option value="" selected disabled>{{__('Select...')}}</option>
+                    <option value="F" @if (old('gender') == 'F') selected  @endif>{{__('Female')}}</option>
+                    <option value="M" @if (old('gender') == 'M')  selected @endif>{{__('Male')}}</option>
+                </select>
             </div>
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
