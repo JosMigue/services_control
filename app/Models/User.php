@@ -22,6 +22,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'status',
+        'age',
+        'gender',
+        'role_id'
     ];
 
     protected $hidden = [
@@ -41,5 +45,9 @@ class User extends Authenticatable
 
     public function services(){
         return $this->hasMany(Service::class);
+    }
+
+    public function role(){
+        return $this->BelongsTo(Role::class);
     }
 }

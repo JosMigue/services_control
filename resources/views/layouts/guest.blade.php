@@ -21,4 +21,5 @@
             {{ $slot }}
         </div>
     </body>
+    <script src="{{asset('js/utils/closeAlert.js')}}"></script>
 </html>
